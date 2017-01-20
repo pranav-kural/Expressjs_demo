@@ -5,6 +5,13 @@ var dataFile = require('./data/data.json');
 app.set("port", process.env.PORT || 3000);
 
 app.get('/', function(req, res) {
+  res.send(`
+    <h1>Welcome</h1>
+    <p>Roux Academy Meetups put together artists from all walks of life</p>
+  `);
+});
+
+app.get('/speakers', function(req, res) {
   let info = '';
   dataFile.speakers.forEach(function(item) {
     info += `
