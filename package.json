@@ -1,12 +1,12 @@
 {
   "name": "expressjs",
   "version": "1.0.0",
-  "description": "Files for my Building a Website with Node & ExpressJS course on Lynda.com",
+  "description": "Demo website built using ExpressJS and NodeJS",
   "main": "app/app.js",
   "scripts": {
     "start": "node app/app.js"
   },
-  "author": "Ray Villalobos",
+  "author": "Pranav Kural",
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0"
