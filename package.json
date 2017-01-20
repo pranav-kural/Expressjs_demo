@@ -4,7 +4,7 @@
   "description": "Demo website built using ExpressJS and NodeJS",
   "main": "app/app.js",
   "scripts": {
-    "start": "node app/app.js"
+    "start": "nodemon -e css,ejs,js,json --watch app"
   },
   "author": "Pranav Kural",
   "license": "MIT",
@@ -13,5 +13,8 @@
   },
   "jshintConfig": {
     "esnext": true
+  },
+  "devDependencies": {
+    "reload": "^1.1.0"
   }
 }
