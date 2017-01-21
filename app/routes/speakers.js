@@ -1,36 +1,34 @@
-let express = require('express');
-let router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 router.get('/speakers', function(req, res) {
-  let info = '';
-  let dataFile = req.app.get('appData');
-  dataFile.speakers.forEach(function(item) {
-    info += `
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <li>
-      <h2>${item.name};</h2>
-      <img src="/images/speakers/${item.shortname}_tn.jpg" alt="Picture of ${item.name}" style="height: 300px;">
-      <p>${item.summary}</p>
-    </li>
-    <script src="/reload/reload.js"></script>
-    `;
+  var data = req.app.get('appData');
+  var pagePhotos = [];
+  var pageSpeakers = data.speakers;
+
+  data.speakers.forEach(function(item) {
+    pagePhotos = pagePhotos.concat(item.artwork);
   });
-  res.send(`
-    <h1>Roux Academy Meetups</h1>
-    ${info}
-  `);
+
+  res.render('speakers', {
+    pageTitle: 'Speakers',
+    artwork: pagePhotos,
+    speakers: pageSpeakers,
+    pageID: 'speakers'
+  });
+
 });
 
-router.get('/speakers/:speakerId', function(req, res) {
-  let dataFile = req.app.get('appData');
-  let speaker = dataFile.speakers[req.params.speakerId];
+router.get('/speakers/:speakerid', function(req, res) {
+  var dataFile = req.app.get('appData');
+  var speaker = dataFile.speakers[req.params.speakerid];
   res.send(`
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <h1>${speaker.title}</h1>
-    <h2>${speaker.name}</h2>
-    <img src="/images/speakers/${speaker.shortname}_tn.jpg" alt="Picture of ${speaker.name}" style="height: 300px;">    
-    <p>${speaker.summary}</p>
-    <script src="/reload/reload.js"></script>
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+      <h1>${speaker.title}</h1>
+      <h2>with ${speaker.name}</h2>
+      <img src="/images/speakers/${speaker.shortname}_tn.jpg" alt="speaker">
+      <p>${speaker.summary}</p>
+      <script src="/reload/reload.js"></script>
   `);
 });
 
