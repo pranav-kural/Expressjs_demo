@@ -14,7 +14,11 @@
             <% } %>            
             </a>
             <% if (pageID !== 'home') { %>
-              <%= item.summary %>
+              <% if (pageID === 'speakersList') { %>
+                <%= item.summary %>
+              <% } else { %>
+                <%- item.description %>            
+              <% } %>
             <% } %>
           </p>
         </div>
